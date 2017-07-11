@@ -43,6 +43,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 - [ ] Better Loading
 - [ ] favicon
 - [ ] Placeholder for covers
+- [ ] Action feedback
+- [ ] Check token lifetime
 
 ## Contributing
 
