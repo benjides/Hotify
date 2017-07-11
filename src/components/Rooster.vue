@@ -1,19 +1,12 @@
 <template>
   <div class="rooster">
-    <track-pile
-      :tracks="$store.getters.tracks"
-      @discardTrack="discardTrack()"
-      @addTrack="addTrack()">
-    </track-pile>
+    <track-pile></track-pile>
     <div class="info">
+      <audio-player :audio="audio"></audio-player>
       <div class="track-info">
         <span class="title">{{title}}</span>
         <br>
         <span>{{artist}} | {{album}}</span>
-      </div>
-      <div class="action-buttons">
-        <button @click="discardTrack()" class="dislike">DISLIKE</button>
-        <button @click="addTrack()" class="like">LIKE</button>
       </div>
     </div>
   </div>
@@ -21,10 +14,12 @@
 
 <script>
 import TrackPile from './TrackPile'
+import AudioPlayer from './AudioPlayer'
 
 export default {
   components: {
-    TrackPile
+    TrackPile,
+    AudioPlayer
   },
   methods: {
     addTrack () {
@@ -36,13 +31,16 @@ export default {
   },
   computed: {
     title () {
-      return this.$store.state.tracks[0].name
+      return this.$store.getters.head.name
     },
     artist () {
-      return this.$store.state.tracks[0].album.artists.map(artist => artist.name).join(' & ')
+      return this.$store.getters.head.album.artists.map(artist => artist.name).join(' & ')
     },
     album () {
-      return this.$store.state.tracks[0].album.name
+      return this.$store.getters.head.album.name
+    },
+    audio () {
+      return this.$store.getters.head.preview_url
     }
   }
 }
@@ -64,14 +62,5 @@ export default {
       padding 5px
       background-color $primary-text
       color white
-
-  .action-buttons
-    display flex
-    justify-content space-between
-    padding-right 10px
-    .dislike
-      background-color $red
-    .like
-      background-color $green
 
 </style>

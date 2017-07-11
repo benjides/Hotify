@@ -7,13 +7,12 @@
     class="track"
     id="track-0"
     :style="style">
-      <img :src="tracks[0].album.images[0].url" :alt="tracks[0].name">
+      <img :src="$store.getters.head.album.images[0].url" :alt="$store.getters.head.name">
+      <a :href="$store.getters.head.external_urls.spotify" target="_blank"></a>
     </v-touch>
-    <div class="track" id="track-1">
-      <img :src="tracks[1].album.images[0].url" :alt="tracks[1].name">
-    </div>
-    <div class="track" id="track-2">
-      <img :src="tracks[2].album.images[0].url" :alt="tracks[2].name">
+
+    <div class="track" v-for="track in $store.getters.tracks">
+      <img :src="track.album.images[0].url" :alt="track.name">
     </div>
   </div>
 </template>
@@ -26,9 +25,6 @@ export default {
       x: 0,
       width: screen.width / 2
     }
-  },
-  props: {
-    tracks: Array
   },
   computed: {
     style () {
@@ -47,11 +43,11 @@ export default {
     },
     discardTrack () {
       this.release()
-      this.$emit('discardTrack')
+      this.$store.dispatch('discardTrack')
     },
     addTrack () {
       this.release()
-      this.$emit('addTrack')
+      this.$store.dispatch('addTrack')
     },
     release () {
       this.x = 0
@@ -65,8 +61,10 @@ export default {
 @require '../assets/style/colors'
 
 .pile
-  margin 0px 0 50px 0
+  margin 0px 0 40px 0
+  position relative
   .track
+    width 100%
     position absolute
     &:last-child
       position relative
@@ -76,18 +74,20 @@ export default {
       border 5px solid $main-white
       width 80%
 
-#track-0
+.pile .track:nth-child(1)
   z-index 10
-#track-1
+  a
+    position absolute
+    width 100%
+    height 100%
+    top 0
+.pile .track:nth-child(2)
   z-index 9
   transform translate3d(15px, 15px, 0)
-#track-2
+.pile .track:nth-child(3)
   z-index 8
   transform translate3d(30px, 30px, 0)
-
-@keyframes release
-  to
-    transform rotate(0deg) translate3d(0px, 0px, 0px)
-    opacity 1
+.pile .track:nth-child(n+4)
+  z-index -1
 
 </style>

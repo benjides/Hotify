@@ -3,12 +3,12 @@
   <header>
     <span class="title">{{app}}</span>
   </header>
-  <div class="content container">
+  <div class="container">
     <span class="hero">Spotify Playlists Tinder-like</span>
     <login v-if="!id"></login>
     <rooster v-if="id" ></rooster>
-    <loading :show="loading"></loading>
   </div>
+  <loading :show="loading"></loading>
 </div>
 
 </template>
@@ -55,7 +55,7 @@ export default {
   @require './assets/style/main'
 
   header
-    height 60px
+    height 55px
     display flex
     align-items center
     justify-content center

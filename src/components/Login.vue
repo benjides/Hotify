@@ -63,7 +63,7 @@ export default {
 .github
   width 100%
   position absolute
-  bottom 0
+  bottom 90px
   margin 10px 0
   a:visited, a:link
     color $primary-text

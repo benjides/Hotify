@@ -36,12 +36,12 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 - [ ] Filter already added tracks
 - [ ] More brutal design
 - [ ] Error checking
-- [ ] Spotify links
-- [ ] Preview songs
+- [x] Spotify links
+- [x] Preview songs
 - [ ] Tune recommendations
-- [ ] Not cringy swipes
+- [x] Not cringy swipes
 - [ ] Better Loading
-- [ ] favicon
+- [x] favicon
 - [ ] Placeholder for covers
 - [ ] Action feedback
 - [ ] Check token lifetime

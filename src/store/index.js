@@ -58,7 +58,7 @@ const store = new Vuex.Store({
       commit('POP_TRACK')
       return addTrack(state.accessToken, state.id, state.playlist, state.tracks[0].id)
     },
-    dimissTrack: ({ commit, state }) => {
+    discardTrack: ({ commit, state }) => {
       commit('POP_TRACK')
       return Promise.resolve()
     }
@@ -83,8 +83,11 @@ const store = new Vuex.Store({
     }
   },
   getters: {
+    head: state => {
+      return state.tracks[0]
+    },
     tracks: state => {
-      return state.tracks.slice(0, 3)
+      return state.tracks.slice(1, 5)
     }
   }
 })
